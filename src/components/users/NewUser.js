@@ -51,6 +51,7 @@ class NewUser extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.state.user)
     if (this.state.user) {
       return;
     }

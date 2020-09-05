@@ -48,7 +48,7 @@ class ListUsers extends React.Component {
   }
 
   handleEdit = (rowData) => {
-    this.props.history.push(`${routesUrl.USER_ADD}/${rowData.uid}`);
+    this.props.history.push(`${routesUrl.USER_UPDATE}/${rowData.uid}`);
   }
 
   handleDelete = (rowData) => {

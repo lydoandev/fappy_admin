@@ -23,7 +23,7 @@ const routes = [
   { path: routesUrl.CHARTS, name: 'Charts', component: Charts },
   { path: routesUrl.LIST_USERS, exact: true,  name: 'Users', component: ListUsers },
   { path: routesUrl.USER_ADD, exact: true, name: 'User', component: NewUser },
-  { path: routesUrl.USER_UPDATE, exact: true, name: '', component: UserUpdate },
+  { path: routesUrl.USER_UPDATE + '/:id', exact: true, name: '', component: UserUpdate },
   { path: routesUrl.NEW_RESTAURANTS, exact: true, name: 'Restaurants', component: NewRestaurants },
   { path: routesUrl.EDIT_RESTAURANTS, exact: true, name: '', component: EditRestaurants },
   { path: routesUrl.NEW_MARKETER, exact: true, name: 'Marketer', component: NewMarketer },
