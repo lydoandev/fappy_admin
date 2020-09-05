@@ -47,7 +47,7 @@ class ListMarketer extends React.Component {
   }
 
   handleEdit = (rowData, url) => {
-    this.props.history.push(`${routesUrl[url]}/${rowData.uid}`);
+    this.props.history.push(`${routesUrl.EDIT_MARKETER}/${rowData.uid}`);
   }
 
   handleDelete = (rowData, nameCollection) => {

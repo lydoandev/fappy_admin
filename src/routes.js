@@ -25,9 +25,9 @@ const routes = [
   { path: routesUrl.USER_ADD, exact: true, name: 'User', component: NewUser },
   { path: routesUrl.USER_UPDATE + '/:id', exact: true, name: '', component: UserUpdate },
   { path: routesUrl.NEW_RESTAURANTS, exact: true, name: 'Restaurants', component: NewRestaurants },
-  { path: routesUrl.EDIT_RESTAURANTS, exact: true, name: '', component: EditRestaurants },
+  { path: routesUrl.EDIT_RESTAURANTS + '/:id', exact: true, name: '', component: EditRestaurants },
   { path: routesUrl.NEW_MARKETER, exact: true, name: 'Marketer', component: NewMarketer },
-  { path: routesUrl.EDIT_MARKETER, exact: true, name: 'Edit Marketer', component: EditMarketer },
+  { path: routesUrl.EDIT_MARKETER + '/:id', exact: true, name: 'Edit Marketer', component: EditMarketer },
   { path: routesUrl.LIST_MARKETER, exact: true, name: 'List Marketers', component: ListMarketer },
   { path: routesUrl.LIST_RESTAURANT, exact: true, name: 'List Restaurants', component: ListRestaurant }
 ];

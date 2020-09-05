@@ -46,8 +46,8 @@ class ListRestaurants extends React.Component {
     });
   }
 
-  handleEdit = (rowData, url) => {
-    this.props.history.push(`${routesUrl[url]}/${rowData.uid}`);
+  handleEdit = (rowData) => {
+    this.props.history.push(`${routesUrl.EDIT_RESTAURANTS}/${rowData.uid}`);
   }
 
   handleDelete = (rowData, nameCollection) => {
@@ -150,7 +150,7 @@ class ListRestaurants extends React.Component {
                     , 'actions':
                       (item) => (
                         <td>
-                          <button onClick={() => this.handleEdit(item, "NEW_RESTAURANTS")} className="btn btn-outline-info btn-sm"><i className="fas fa-marker"></i></button>
+                          <button onClick={() => this.handleEdit(item, "_RESTAURANTS")} className="btn btn-outline-info btn-sm"><i className="fas fa-marker"></i></button>
                           <button onClick={() => this.handleDelete(item, "restaurants")} className="btn btn-outline-danger btn-sm ml-3"><i className="fas fa-times"></i></button>
                         </td>
                       )
