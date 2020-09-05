@@ -1,0 +1,96 @@
+// Here you can add other styles
+.image {
+    width: 100px;
+    height: 80px;
+}
+
+.c-default-layout {
+    background: url(../assets/image/banner.jpg) top left no-repeat;
+    background-size: cover;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+.table tbody td:last-child {
+    min-width: 110px;
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .form-group {
+        margin-bottom: 0;
+    }
+}
+
+.c-sidebar {
+    background-color: #181f2a;
+    .c-sidebar-nav-link:hover {
+        background-color: orange;
+    }
+}
+
+.c-sidebar-minimized .c-sidebar .c-sidebar-nav-link:hover {
+    background-color: red;
+}
+.c-sidebar .c-sidebar-nav-link:hover,
+.c-sidebar .c-sidebar-nav-dropdown-toggle:hover {
+    background-color: orange !important;
+}
+.card-header {
+    background-color: #ffa500c7;
+}
+.chart-card {
+    margin-top: 5%;
+}
+
+small.text-danger {
+    color: #e55353 !important;
+}
+
+.l-chart {
+    margin-top: 5%;
+}
+.statistic {
+    .title {
+        text-align: center;
+        margin-bottom: 40px;
+        h3 {
+            font-size: 35px;
+            color: white;
+        }
+    }
+}
+.wellcome-page {
+    .title {
+        text-align: center;
+        margin-bottom: 50px;
+        h2 {
+            font-size: 40px;
+            color: white;
+        }
+    }
+}
+
+.main-toast {
+    z-index: 9999;
+    position: fixed;
+    top: 110px;
+    right: 1rem;
+    color: #fff;
+    width: 100%;
+    .toast {
+        background-color: rgb(173, 204, 132);
+    }
+}
+
+.img-logo {
+    width: 65px;
+    height: auto;
+}
+
+.upload-img {
+    width: 100px;
+    margin-top: 5px;
+}

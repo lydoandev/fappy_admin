@@ -1,0 +1,15 @@
+{
+  "short_name": "Faddy",
+  "name": "Faddy-Admin",
+  "icons": [
+    {
+      "src": "logo-faddy.ico",
+      "sizes": "200x200",
+      "type": "image/icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

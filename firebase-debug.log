@@ -1,0 +1,89 @@
+[debug] [2020-09-05T05:51:14.129Z] ----------------------------------------------------------------------
+[debug] [2020-09-05T05:51:14.132Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only hosting
+[debug] [2020-09-05T05:51:14.132Z] CLI Version:   8.6.0
+[debug] [2020-09-05T05:51:14.133Z] Platform:      darwin
+[debug] [2020-09-05T05:51:14.133Z] Node Version:  v10.20.0
+[debug] [2020-09-05T05:51:14.134Z] Time:          Sat Sep 05 2020 12:51:14 GMT+0700 (Indochina Time)
+[debug] [2020-09-05T05:51:14.134Z] ----------------------------------------------------------------------
+[debug] [2020-09-05T05:51:14.134Z] 
+[debug] [2020-09-05T05:51:14.194Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-09-05T05:51:14.194Z] > authorizing via signed-in user
+[debug] [2020-09-05T05:51:14.195Z] [iam] checking project fappymanagement for permissions ["firebase.projects.get"]
+[debug] [2020-09-05T05:51:14.197Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-09-05T05:51:14.198Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-09-05T05:51:14.529Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 05 Sep 2020 05:51:14 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-05T05:51:14.559Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/fappymanagement:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-09-05T05:51:15.674Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 05 Sep 2020 05:51:15 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=874","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-05T05:51:15.676Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/fappymanagement  
+ 
+[debug] [2020-09-05T05:51:16.548Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 05 Sep 2020 05:51:16 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-05T05:51:16.550Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/fappymanagement/webApps/-/config  
+ 
+[debug] [2020-09-05T05:51:18.207Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 05 Sep 2020 05:51:18 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting: Serving hosting files from: build {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mbuild\u001b[22m"}}
+[info] ✔  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[info] i  hosting: 127.0.0.1 - - [05/Sep/2020:05:57:57 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [05/Sep/2020:05:57:57 +0000] \"GET / HTTP/1.1\" 404 139 \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36\""}}
+[debug] [2020-09-05T06:16:05.180Z] ----------------------------------------------------------------------
+[debug] [2020-09-05T06:16:05.182Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only functions
+[debug] [2020-09-05T06:16:05.182Z] CLI Version:   8.6.0
+[debug] [2020-09-05T06:16:05.182Z] Platform:      darwin
+[debug] [2020-09-05T06:16:05.182Z] Node Version:  v10.20.0
+[debug] [2020-09-05T06:16:05.183Z] Time:          Sat Sep 05 2020 13:16:05 GMT+0700 (Indochina Time)
+[debug] [2020-09-05T06:16:05.183Z] ----------------------------------------------------------------------
+[debug] [2020-09-05T06:16:05.183Z] 
+[debug] [2020-09-05T06:16:05.195Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-09-05T06:16:05.196Z] > authorizing via signed-in user
+[debug] [2020-09-05T06:16:05.196Z] [iam] checking project fappymanagement for permissions ["firebase.projects.get"]
+[debug] [2020-09-05T06:16:05.200Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/fappymanagement:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-09-05T06:16:06.948Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 05 Sep 2020 06:16:06 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=890","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-05T06:16:06.950Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/fappymanagement  
+ 
+[debug] [2020-09-05T06:16:08.212Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 05 Sep 2020 06:16:08 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-05T06:16:08.693Z] TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received type undefined
+    at validateString (internal/validators.js:125:11)
+    at Object.join (path.js:1147:7)
+    at Object.<anonymous> (/usr/local/lib/node_modules/firebase-tools/lib/serve/functions.js:21:39)
+    at Generator.next (<anonymous>)
+    at /usr/local/lib/node_modules/firebase-tools/lib/serve/functions.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/usr/local/lib/node_modules/firebase-tools/lib/serve/functions.js:4:12)
+    at Object.start (/usr/local/lib/node_modules/firebase-tools/lib/serve/functions.js:19:16)
+    at Promise.all._.map (/usr/local/lib/node_modules/firebase-tools/lib/serve/index.js:24:40)
+    at arrayMap (/usr/local/lib/node_modules/firebase-tools/node_modules/lodash/lodash.js:639:23)
+    at Function.map (/usr/local/lib/node_modules/firebase-tools/node_modules/lodash/lodash.js:9580:14)
+    at /usr/local/lib/node_modules/firebase-tools/lib/serve/index.js:23:29
+    at Generator.next (<anonymous>)
+    at /usr/local/lib/node_modules/firebase-tools/lib/serve/index.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/usr/local/lib/node_modules/firebase-tools/lib/serve/index.js:4:12)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2020-09-05T06:16:34.330Z] ----------------------------------------------------------------------
+[debug] [2020-09-05T06:16:34.331Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2020-09-05T06:16:34.332Z] CLI Version:   8.6.0
+[debug] [2020-09-05T06:16:34.332Z] Platform:      darwin
+[debug] [2020-09-05T06:16:34.332Z] Node Version:  v10.20.0
+[debug] [2020-09-05T06:16:34.333Z] Time:          Sat Sep 05 2020 13:16:34 GMT+0700 (Indochina Time)
+[debug] [2020-09-05T06:16:34.333Z] ----------------------------------------------------------------------
+[debug] [2020-09-05T06:16:34.333Z] 
+[debug] [2020-09-05T06:16:34.344Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-09-05T06:16:34.344Z] > authorizing via signed-in user
+[debug] [2020-09-05T06:16:34.345Z] [iam] checking project fappymanagement for permissions ["firebase.projects.get"]
+[debug] [2020-09-05T06:16:34.347Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/fappymanagement:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-09-05T06:16:35.770Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 05 Sep 2020 06:16:35 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=824","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-05T06:16:35.772Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/fappymanagement  
+ 
+[debug] [2020-09-05T06:16:36.650Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 05 Sep 2020 06:16:36 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Serving from '/Users/lydoan/Documents/AdminWeb/fappy-admin-demo'...
+[info] 
+[debug] [2020-09-05T06:16:36.655Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/fappymanagement/webApps/-/config  
+ 
+[debug] [2020-09-05T06:16:40.387Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 05 Sep 2020 06:16:40 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[warn] ⚠  hosting: Port 5000 is not available. Trying another port... {"metadata":{"emulator":{"name":"hosting"},"message":"\u001b[33mhosting: \u001b[39mPort 5000 is not available. Trying another port..."}}
+[info] i  hosting: Serving hosting files from: build {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mbuild\u001b[22m"}}
+[info] ✔  hosting: Local server: http://localhost:5005 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5005\u001b[22m\u001b[24m"}}
