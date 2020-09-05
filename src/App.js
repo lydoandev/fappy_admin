@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './scss/style.scss';
 import * as routesUrl from "./routesUrl";
 
@@ -27,22 +27,22 @@ class App extends Component {
   }
 
   render() {
-    return ( 
-      <BrowserRouter>
+    return (
+      <HashRouter>
           <React.Suspense fallback={loading}>
             <Switch>
               <Route exact path={routesUrl.LOGIN} name="Login Page" render={props => <Login {...props}/>} />
               <Route exact path={routesUrl.REGISTER} name="Register Page" render={props => <Register {...props}/>} />
               <Route exact path={routesUrl.PAGE404} name="Page 404" render={props => <Page404 {...props}/>} />
               <Route exact path={routesUrl.PAGE500} name="Page 500" render={props => <Page500 {...props}/>} />
-              <Route path={routesUrl.HOME} name="Home" render={props => this.state.user === true ? 
+              <Route path={routesUrl.HOME} name="Home" render={props => this.state.user === true ?
                   <TheLayout {...props}/>
                 :
-                <Redirect to={{ pathname: "/login" }} />} 
+                <Redirect to={{ pathname: "/login" }} />}
                 />
             </Switch>
           </React.Suspense>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
