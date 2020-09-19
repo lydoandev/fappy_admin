@@ -14,7 +14,7 @@ import {
 
 import fire from "../../../config/fire";
 import * as routesUrl from '../../../routesUrl'
-import Toast from "../../../common/Toast";
+import { ToastContainer, toast } from 'react-toastify';
 
 const fields = ['name', 'phone', 'location', 'image', 'actions']
 
@@ -25,7 +25,6 @@ class ListMarketer extends React.Component {
       listMarketer: null,
       totalRecordsMar: 0,
       row: 10,
-      content: "",
       searchInput: "",
       dataFilter: []
     }
@@ -54,10 +53,10 @@ class ListMarketer extends React.Component {
     let itemRef = fire.database().ref(`${nameCollection}/${rowData.uid}`)
     itemRef.remove()
       .then(() => {
-        this.setState({ content: `This ${nameCollection} deleted sucess` })
+        toast.success(`This ${nameCollection} deleted success`)
       })
       .catch((error) => {
-        this.setState({ content: `This ${nameCollection} not exist!` });
+        toast.error(`This ${nameCollection} not exist!`);
       })
   }
 
@@ -94,10 +93,10 @@ class ListMarketer extends React.Component {
   }
 
   render() {
-    const { dataFilter, totalRecordsMar, row, searchInput, content } = this.state
+    const { dataFilter, totalRecordsMar, row, searchInput } = this.state
     return (
       <>
-        {content && <Toast content={content} />}
+        <ToastContainer/>
         <CRow >
           <CCol>
             <CCard>

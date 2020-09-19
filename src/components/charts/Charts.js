@@ -121,7 +121,7 @@ class Charts extends React.Component {
       listOrder.map(item => {
         let date = new Date(item.orderDate)
         let yearCurrent = date.getFullYear();
-        if (item.status === "success" && yearCurrent === year && item.seller.name === nameSelected) {
+        if (item.status === "received" && yearCurrent === year && item.seller.name === nameSelected) {
           price = price + item.totalPrice
         }
       })
@@ -137,7 +137,7 @@ class Charts extends React.Component {
     for (let index = 1; index <= 12; index++) {
       let amount = 0;
       listOrderInYear.map(item => {
-        if (item.status === "success") {
+        if (item.status === "received") {
           let date = new Date(item.orderDate)
           let month = date.getMonth() + 1;
 
@@ -147,6 +147,7 @@ class Charts extends React.Component {
         }
       })
       data.push(amount)
+
     }
     this.setState({ monthTotal: data })
   }
@@ -189,7 +190,7 @@ class Charts extends React.Component {
                       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                       datasets: [
                         {
-                          label: 'Monthly Income',
+                          label: 'Monthly Income (VND)',
                           backgroundColor: '#f23a5f',
                           borderWidth: 2,
                           data: monthTotal
@@ -206,7 +207,7 @@ class Charts extends React.Component {
                         {
                           ticks: {
                             suggestedMin: 0,
-                            suggestedMax: 500000
+                            suggestedMax: 10000
                           }
                         }
                       ]
@@ -250,7 +251,7 @@ class Charts extends React.Component {
                   pointHoverBackgroundColor="#1b91bf"
                   borderColor="#f23a5f"
                   labels={ListYears}
-                  label="Revenue"
+                  label="Revenue (VND)"
                 />
               </CCardBody>
             </CCard>

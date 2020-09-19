@@ -75,13 +75,13 @@ class Dashboard extends Component {
     return (
       <>
         <div className="wellcome-page">
-          <div className="title"><h2>WELLCOME TO FADDY ADMIN PAGE</h2></div>
+          <div className="title"><h2>WELLCOME TO FAPPY ADMIN PAGE</h2></div>
         </div>
         <CRow>
           <CCol>
             <CCard>
               <CCardHeader>
-                Faddy Management
+                Fappy Management
             </CCardHeader>
               <CCardBody>
                 <CRow>

@@ -14,7 +14,6 @@ import {
 
 import fire from "../../config/fire";
 import * as routesUrl from '../../routesUrl'
-import Toast from "../../common/Toast"
 
 const fields = ['firstName', 'lastName', 'fullName', 'phone', 'role', 'status', 'actions']
 
@@ -25,7 +24,6 @@ class ListUsers extends React.Component {
       listUsers: [],
       totalRecords: 0,
       row: 10,
-      content: "",
       searchInput: "",
       dataFilter: []
     }
@@ -49,17 +47,6 @@ class ListUsers extends React.Component {
 
   handleEdit = (rowData) => {
     this.props.history.push(`${routesUrl.USER_UPDATE}/${rowData.uid}`);
-  }
-
-  handleDelete = (rowData) => {
-    let itemRef = fire.database().ref(`users/${rowData.uid}`)
-    itemRef.remove()
-      .then(() => {
-        this.setState({ content: "This user deleted sucess" })
-      })
-      .catch((error) => {
-        this.setState({ content: "This user not exist!" });
-      })
   }
 
   handleAdd = () => {
@@ -99,10 +86,9 @@ class ListUsers extends React.Component {
   }
 
   render() {
-    const { dataFilter, totalRecords, row, content, searchInput } = this.state
+    const { dataFilter, totalRecords, row, searchInput } = this.state
     return (
       <>
-        {content && <Toast content={content} />}
         <CRow>
           <CCol>
             <CCard>
@@ -141,9 +127,8 @@ class ListUsers extends React.Component {
                   scopedSlots={{
                     'actions':
                       (item) => (
-                        <td>
+                        <td style={{ width: '100px' }}>
                           <button onClick={() => this.handleEdit(item)} className="btn btn-outline-info btn-sm"><i className="fas fa-user-edit"></i></button>
-                          <button onClick={() => this.handleDelete(item)} className="btn btn-outline-danger btn-sm ml-3"><i className="fas fa-user-minus"></i></button>
                         </td>
                       )
                   }}

@@ -4,7 +4,7 @@ export default [
 
   {
     _tag: 'CSidebarNavTitle',
-    _children: ['Faddy Management']
+    _children: ['Fappy Management']
   },
   {
     _tag: 'CSidebarNavItem',
@@ -37,7 +37,7 @@ export default [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'CHARS',
+    name: 'STATISTIC',
     to: routesUrl.CHARTS,
     icon: 'cil-chart-pie'
   },

@@ -33,7 +33,7 @@ const TheHeaderDropdown = () => {
           <CImg
             src={'/logo-faddy.ico'}
             className="c-avatar-img"
-            alt="Faddy logo"
+            alt="Fappy logo"
           />
         </div>
       </CDropdownToggle>

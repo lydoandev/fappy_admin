@@ -16,11 +16,12 @@ import {
   CTextarea,
   CImg
 } from "@coreui/react";
+import CIcon from '@coreui/icons-react'
 import * as routesUrl from "../../../routesUrl";
 import firebase from "../../../config/fire";
 import validateError from "../../../common/validateError";
 import ValidateInput from "../../../common/validateInput"
-import Toast from "../../../common/Toast";
+import { ToastContainer, toast } from 'react-toastify';
 
 const INITAL_STATE = {
   image: "",
@@ -38,7 +39,6 @@ class EditMarketer extends React.Component {
     this.state = {
       marketers: null,
       imageAsFile: "",
-      content: "",
       errors: {
         firstName: false,
         image: false,
@@ -108,7 +108,7 @@ class EditMarketer extends React.Component {
 
     const storage = firebase.storage()
     if (imageAsFile === '') {
-      console.log(`Not an image, the image file is a ${typeof (imageAsFile)}`)
+      toast.error(`Not an image, the image file is a ${typeof (imageAsFile)}`)
     }
     const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
     uploadTask.on('state_changed',
@@ -148,7 +148,7 @@ class EditMarketer extends React.Component {
     if (isValid) {
       this.EditMarketer(this.state.marketers);
     } else {
-      this.setState({ content: "This marketers has data incorrect!" });
+      toast.error("This marketer has data incorrect!");
     }
   };
 
@@ -156,10 +156,13 @@ class EditMarketer extends React.Component {
     const ref = firebase.database().ref(`marketers/${this.props.match.params.id}`);
     ref.update(marketers)
       .then(() => {
-        this.setState({ content: "This marketers update success" });
+        toast.success("This marketer update success");
+        setTimeout(() => {
+          this.props.history.push(routesUrl.LIST_MARKETER)
+        }, 3000)
       })
       .catch((error) => {
-        this.setState({ content: "Update marketers incorrect" });
+        toast.error("This marketer update unsuccess");
       });
   };
 
@@ -172,19 +175,19 @@ class EditMarketer extends React.Component {
   };
 
   render() {
-    const { marketers, errors, content } = this.state;
+    const { marketers, errors } = this.state;
     const invalidValue = [undefined, null];
 
     return (
       marketers && (
         <div>
-          {content && <Toast content={content} />}
+          <ToastContainer />
           <CRow className="justify-content-center">
             <CCol xs="12" md="6">
               <CCard>
                 <CCardHeader>
-                  marketers Form
-              </CCardHeader>
+                  <span style={{ margin: '0 auto', fontWeight: 'bold' }}>Marketers Form</span>
+                </CCardHeader>
                 <CCardBody>
                   <CForm className="form-horizontal">
                     <CFormGroup row>
@@ -289,6 +292,10 @@ class EditMarketer extends React.Component {
                     color="success"
                     onClick={this.handleSave}
                   >
+                    <CIcon name="cil-check" style={{
+                      margin: '0 0.3rem',
+                      verticalAlign: 'sub'
+                    }} />
                     SAVE
                 </CButton>
 
@@ -297,6 +304,10 @@ class EditMarketer extends React.Component {
                     size="sm"
                     color="danger"
                     onClick={this.handleClose}>
+                    <CIcon name="cil-X" style={{
+                      margin: '0 0.3rem',
+                      verticalAlign: 'sub'
+                    }} />
                     CANCEL
                 </CButton>
                 </CCardFooter>

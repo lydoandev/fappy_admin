@@ -16,11 +16,12 @@ import {
   CImg,
   CTextarea
 } from "@coreui/react";
+import CIcon from '@coreui/icons-react'
 import * as routesUrl from "../../../routesUrl";
 import firebase from "../../../config/fire";
 import validateError from "../../../common/validateError";
 import ValidateInput from "../../../common/validateInput"
-import Toast from "../../../common/Toast";
+import { ToastContainer, toast } from 'react-toastify';
 
 const INITAL_STATE = {
   openHour: "",
@@ -40,7 +41,6 @@ class NewRestaurants extends React.Component {
     this.state = {
       restaurants: { ...INITAL_STATE },
       imageAsFile: "",
-      content: "",
       errors: {
         openHour: false,
         closeHour: false,
@@ -93,7 +93,7 @@ class NewRestaurants extends React.Component {
 
     const storage = firebase.storage()
     if (imageAsFile === '') {
-      this.setState({ content: `Not an image, the image file is a ${typeof (imageAsFile)}` })
+      toast.error(`Not an image, the image file is a ${typeof (imageAsFile)}`)
     }
     const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
     uploadTask.on('state_changed',
@@ -132,7 +132,7 @@ class NewRestaurants extends React.Component {
     if (isValid) {
       this.addRestaurants(this.state.restaurants);
     } else {
-      this.setState({ content: "This Restaurants has data incorrect!" });
+      toast.success("This restaurant has data incorrect!");
     }
   };
 
@@ -141,11 +141,13 @@ class NewRestaurants extends React.Component {
     ref.push(restaurants)
 
       .then(() => {
-        window.location.href = routesUrl.LIST_RESTAURANT;
-        this.setState({ content: "This restaurants add sucess" });
+        toast.success("This restaurant add success");
+        setTimeout(() => {
+          this.props.history.push(routesUrl.LIST_RESTAURANT)
+        }, 3000)
       })
       .catch((error) => {
-        this.setState({ content: "Update restaurants incorrect" });
+        toast.error("This restaurant add unsuccess");
       });
   };
 
@@ -158,19 +160,19 @@ class NewRestaurants extends React.Component {
   }
 
   render() {
-    const { restaurants, errors, content } = this.state;
+    const { restaurants, errors } = this.state;
     const invalidValue = [undefined, null];
 
     return (
       restaurants && (
         <>
-          {content && <Toast content={content} />}
+          <ToastContainer />
           <CRow className="justify-content-center">
             <CCol xs="12" md="6">
               <CCard>
                 <CCardHeader>
-                  Add Restaurants
-              </CCardHeader>
+                  <span style={{ margin: '0 auto', fontWeight: 'bold' }}>Add Restaurants</span>
+                </CCardHeader>
                 <CCardBody>
                   <CForm className="form-horizontal">
                     <CFormGroup row>
@@ -304,6 +306,10 @@ class NewRestaurants extends React.Component {
                     color="success"
                     onClick={this.handleSave}
                   >
+                    <CIcon name="cil-check" style={{
+                      margin: '0 0.3rem',
+                      verticalAlign: 'sub'
+                    }} />
                     SAVE
                 </CButton>
 
@@ -312,6 +318,10 @@ class NewRestaurants extends React.Component {
                     size="sm"
                     color="danger"
                     onClick={this.handleClose}>
+                    <CIcon name="cil-X" style={{
+                      margin: '0 0.3rem',
+                      verticalAlign: 'sub'
+                    }} />
                     CANCEL
                 </CButton>
                 </CCardFooter>

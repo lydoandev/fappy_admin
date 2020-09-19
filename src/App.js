@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './scss/style.scss';
+import 'react-toastify/dist/ReactToastify.css';
 import * as routesUrl from "./routesUrl";
 
 const loading = (

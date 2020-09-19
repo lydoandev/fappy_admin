@@ -17,6 +17,7 @@ import CIcon from "@coreui/icons-react";
 import { withFirebase } from "../../components/Firebase/context";
 import fire from "../../config/fire";
 import * as routesUrl from "../../routesUrl";
+import { ToastContainer, toast } from 'react-toastify';
 
 const INITIAL_STATE = {
   email: '',
@@ -37,7 +38,12 @@ class LoginBase extends Component {
       .then(() => {
         this.setState({ ...INITIAL_STATE });
         localStorage.setItem("login_status", true);
-        window.location.href = routesUrl.HOME;
+        toast.success('Login successful')
+        const timer = setTimeout(() => {
+          window.location.href = routesUrl.HOME;
+        }, 5000);
+        return () => clearTimeout(timer);
+
       })
       .catch(error => {
         this.setState({ error: true });
@@ -51,6 +57,7 @@ class LoginBase extends Component {
   render() {
     return (
       <div className="c-app c-default-layout flex-row align-items-center">
+        <ToastContainer />
         <CContainer>
           <CRow className="justify-content-center">
             <CCol xs="10" md="8" lg="5">

@@ -19,7 +19,7 @@ import * as routesUrl from '../../routesUrl'
 import firebase from '../../config/fire';
 import validateError from "../../common/validateError";
 import ValidateInput from "../../common/validateInput";
-import Toast from "../../common/Toast";
+import { ToastContainer, toast } from 'react-toastify';
 
 const INITAL_STATE = {
   firstName: "",
@@ -37,7 +37,6 @@ class UserUpdate extends React.Component {
       user: null,
       passwordConfirm: "",
       showPasswordConfirm: false,
-      content: "",
       errors: {
         email: false,
         firstName: false,
@@ -139,7 +138,7 @@ class UserUpdate extends React.Component {
       this.updateUser(user)
 
     } else {
-      this.setState({content:"this user has data incorrect!"});
+      toast.error("This user has data incorrect!");
     }
   }
 
@@ -148,10 +147,15 @@ class UserUpdate extends React.Component {
 
     refUser.update(user)
       .then(() => {
-        this.setState({ showPasswordConfirm: false, content:"this user updated sucess" })
+        this.setState({ showPasswordConfirm: false })
+        toast.success("This user updated success")
+        setTimeout(() => {
+          this.props.history.push(routesUrl.LIST_USERS)
+        }, 3000)
+
       })
       .catch((error) => {
-        this.setState({content:"update user incorrect"});
+        toast.error("This user update unsuccess");
       })
   }
 
@@ -167,7 +171,7 @@ class UserUpdate extends React.Component {
         user[stateName] = stateValue
         this.setState({ showPasswordConfirm: true, user })
       } else {
-        this.setState({content:"New password must be different from the old password"});
+        toast.warning("New password must be different from the old password");
       }
     } else {
       if (stateValue !== currentPassword) {
@@ -184,160 +188,171 @@ class UserUpdate extends React.Component {
   }
 
   render() {
-    const { user, passwordConfirm, errors, showPasswordConfirm, content } = this.state;
+    const { user, passwordConfirm, errors, showPasswordConfirm } = this.state;
     const invalidValue = [undefined, null]
 
     return (
       user &&
       <div>
-      {content && <Toast content={content}/>}
-      <CRow className="justify-content-center">
-        <CCol xs="12" md="6" >
-          <CCard>
-            <CCardHeader>
-              <span>Detail User: </span>
-              <span className="font-weight-bold"> {user.fullName}</span>
-            </CCardHeader>
-            <CCardBody>
-              <CForm className="form-horizontal">
+        <ToastContainer />
+        <CRow className="justify-content-center">
+          <CCol xs="12" md="6" >
+            <CCard>
+              <CCardHeader>
+                <span className="font-weight-bold" style={{ margin: '0 auto' }}> {user.fullName}</span>
+              </CCardHeader>
+              <CCardBody>
+                <CForm className="form-horizontal">
 
-                <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel className="font-weight-bold">First Name</CLabel>
-                  </CCol>
-                  <CCol xs="12" md="9">
-                    <CInput
-                      name="firstName"
-                      placeholder="First Name"
-                      value={invalidValue.includes(user.firstName) ? "" : user.firstName}
-                      onChange={this.handleChange}
-                    />
-                    {errors.firstName && <CFormText className="text-danger">Please enter your first name</CFormText>}
-                  </CCol>
-                </CFormGroup>
-                <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel className="font-weight-bold">Last Name</CLabel>
-                  </CCol>
-                  <CCol xs="12" md="9">
-                    <CInput
-                      name="lastName"
-                      placeholder="Last Name"
-                      value={invalidValue.includes(user.lastName) ? "" : user.lastName}
-                      onChange={this.handleChange}
-                    />
-                    {errors.lastName &&<CFormText className="text-danger">Please enter your last name</CFormText>}
-                  </CCol>
-                </CFormGroup>
-
-                <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel className="font-weight-bold">Emaill</CLabel>
-                  </CCol>
-                  <CCol xs="12" md="9">
-                    <CInput
-                      name="email"
-                      value={invalidValue.includes(user.email) ? "" : user.email}
-                      onChange={this.handleChange}
-                    />
-                    {errors.email && <CFormText className="text-danger">Please enter email correct</CFormText>}
-                  </CCol>
-                </CFormGroup>
-
-                <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel className="font-weight-bold">Phone</CLabel>
-                  </CCol>
-                  <CCol xs="12" md="9">
-                    <CInput
-                      name="phone"
-                      placeholder="Phone"
-                      value={user.phone}
-                      onChange={event => {
-                        if (ValidateInput.verifyNumber(event.target.value)) {
-                          this.handleChange(event)
-                        }
-                      }}
-                    />
-                    {errors.phone && <CFormText className="text-danger">Please enter phone correct</CFormText>}
-                  </CCol>
-                </CFormGroup>
-
-                <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel className="font-weight-bold">Password</CLabel>
-                  </CCol>
-                  <CCol xs="12" md="9">
-                    <CInput
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      value={user.password}
-                      onChange={this.handleChangePassword}
-                      required
-                    />
-                    {errors.password && <CFormText className="text-danger">Please enter password correct</CFormText>}
-                  </CCol>
-                </CFormGroup>
-                {showPasswordConfirm &&
                   <CFormGroup row>
                     <CCol md="3">
-                      <CLabel className="font-weight-bold">Password confirm</CLabel>
+                      <CLabel className="font-weight-bold">First Name</CLabel>
+                    </CCol>
+                    <CCol xs="12" md="9">
+                      <CInput
+                        name="firstName"
+                        placeholder="First Name"
+                        value={invalidValue.includes(user.firstName) ? "" : user.firstName}
+                        onChange={this.handleChange}
+                      />
+                      {errors.firstName && <CFormText className="text-danger">Please enter your first name</CFormText>}
+                    </CCol>
+                  </CFormGroup>
+                  <CFormGroup row>
+                    <CCol md="3">
+                      <CLabel className="font-weight-bold">Last Name</CLabel>
+                    </CCol>
+                    <CCol xs="12" md="9">
+                      <CInput
+                        name="lastName"
+                        placeholder="Last Name"
+                        value={invalidValue.includes(user.lastName) ? "" : user.lastName}
+                        onChange={this.handleChange}
+                      />
+                      {errors.lastName && <CFormText className="text-danger">Please enter your last name</CFormText>}
+                    </CCol>
+                  </CFormGroup>
+
+                  <CFormGroup row>
+                    <CCol md="3">
+                      <CLabel className="font-weight-bold">Emaill</CLabel>
+                    </CCol>
+                    <CCol xs="12" md="9">
+                      <CInput
+                        name="email"
+                        value={invalidValue.includes(user.email) ? "" : user.email}
+                        onChange={this.handleChange}
+                      />
+                      {errors.email && <CFormText className="text-danger">Please enter email correct</CFormText>}
+                    </CCol>
+                  </CFormGroup>
+
+                  <CFormGroup row>
+                    <CCol md="3">
+                      <CLabel className="font-weight-bold">Phone</CLabel>
+                    </CCol>
+                    <CCol xs="12" md="9">
+                      <CInput
+                        name="phone"
+                        placeholder="Phone"
+                        value={user.phone}
+                        onChange={event => {
+                          if (ValidateInput.verifyNumber(event.target.value)) {
+                            this.handleChange(event)
+                          }
+                        }}
+                      />
+                      {errors.phone && <CFormText className="text-danger">Please enter phone correct</CFormText>}
+                    </CCol>
+                  </CFormGroup>
+
+                  <CFormGroup row>
+                    <CCol md="3">
+                      <CLabel className="font-weight-bold">Password</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
                       <CInput
                         type="password"
-                        name="passwordConfirm"
-                        required={errors.passwordConfirm}
-                        placeholder="Password confirm"
-                        value={passwordConfirm}
+                        name="password"
+                        placeholder="Password"
+                        value={user.password}
                         onChange={this.handleChangePassword}
+                        required
                       />
-                      {errors.passwordConfirm && <CFormText className="text-danger">passwordConfirm not match password</CFormText>}
+                      {errors.password && <CFormText className="text-danger">Please enter password correct</CFormText>}
                     </CCol>
                   </CFormGroup>
-                }
-
-                <CFormGroup row >
-                  <CCol xs="6">
-                    <CFormGroup>
-                      <CLabel className="font-weight-bold">Role</CLabel>
-                      <CSelect
-                        name="role"
-                        placeholder="role"
-                        value={user.role}
-                        onChange={this.handleChange}
-                      >
-                        <option value="Seller">Seller</option>
-                        <option value="Buyer">Buyer</option>
-                      </CSelect>
+                  {showPasswordConfirm &&
+                    <CFormGroup row>
+                      <CCol md="3">
+                        <CLabel className="font-weight-bold">Password confirm</CLabel>
+                      </CCol>
+                      <CCol xs="12" md="9">
+                        <CInput
+                          type="password"
+                          name="passwordConfirm"
+                          required={errors.passwordConfirm}
+                          placeholder="Password confirm"
+                          value={passwordConfirm}
+                          onChange={this.handleChangePassword}
+                        />
+                        {errors.passwordConfirm && <CFormText className="text-danger">passwordConfirm not match password</CFormText>}
+                      </CCol>
                     </CFormGroup>
-                  </CCol>
+                  }
 
-                  <CCol xs="6">
-                    <CFormGroup>
-                      <CLabel className="font-weight-bold">Status</CLabel>
-                      <CSelect
-                        name="status"
-                        placeholder="role"
-                        value={user.status}
-                        onChange={this.handleChange}
-                      >
-                        <option value="Active">Active</option>
-                        <option value="Pause">Pause</option>
-                      </CSelect>
-                    </CFormGroup>
-                  </CCol>
-                </CFormGroup>
-              </CForm>
-            </CCardBody>
-            <CCardFooter>
-              <CButton className="mr-3" size="sm" color="success" onClick={this.handleSave}><CIcon name="cil-check" />SAVE</CButton>
-              <CButton size="sm" color="danger" onClick={this.handleClose}><CIcon name="cil-X" /> CANCEL</CButton>
-            </CCardFooter>
-          </CCard>
-        </CCol>
-      </CRow>
+                  <CFormGroup row >
+                    <CCol xs="6">
+                      <CFormGroup>
+                        <CLabel className="font-weight-bold">Role</CLabel>
+                        <CSelect
+                          name="role"
+                          placeholder="role"
+                          value={user.role}
+                          onChange={this.handleChange}
+                        >
+                          <option value="Seller">Seller</option>
+                          <option value="Buyer">Buyer</option>
+                        </CSelect>
+                      </CFormGroup>
+                    </CCol>
+
+                    <CCol xs="6">
+                      <CFormGroup>
+                        <CLabel className="font-weight-bold">Status</CLabel>
+                        <CSelect
+                          name="status"
+                          placeholder="role"
+                          value={user.status}
+                          onChange={this.handleChange}
+                        >
+                          <option value="Active">Active</option>
+                          <option value="Pause">Pause</option>
+                        </CSelect>
+                      </CFormGroup>
+                    </CCol>
+                  </CFormGroup>
+                </CForm>
+              </CCardBody>
+              <CCardFooter>
+                <CButton className="mr-3" size="sm" color="success" onClick={this.handleSave}>
+                  <CIcon name="cil-check" style={{
+                    margin: '0 0.3rem',
+                    verticalAlign: 'sub'
+                  }} />
+                SAVE
+                </CButton>
+                <CButton size="sm" color="danger" onClick={this.handleClose}>
+                  <CIcon name="cil-X" style={{
+                    margin: '0 0.3rem',
+                    verticalAlign: 'sub'
+                  }} />
+                CANCEL
+              </CButton>
+              </CCardFooter>
+            </CCard>
+          </CCol>
+        </CRow>
       </div>
     )
   }
