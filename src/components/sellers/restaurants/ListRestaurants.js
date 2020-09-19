@@ -30,6 +30,10 @@ class ListRestaurants extends React.Component {
     }
   }
   componentDidMount() {
+    this.getListRestaurants()
+  }
+
+  getListRestaurants = () => {
     fire.database().ref('restaurants').on('value', snapshot => {
       const restaurantObject = snapshot.val();
       const restaurantList = Object.keys(restaurantObject).map(key => ({
@@ -37,10 +41,12 @@ class ListRestaurants extends React.Component {
         uid: key,
       }));
 
+      let  listRestaurants = restaurantList.filter(item => item.deletedAt !== true)
+
       this.setState({
-        listRestaurant: restaurantList,
-        totalRecordsRes: restaurantList.length,
-        dataFilter: restaurantList
+        listRestaurant: listRestaurants,
+        totalRecordsRes: listRestaurants.length,
+        dataFilter: listRestaurants
       });
     });
   }
@@ -50,8 +56,10 @@ class ListRestaurants extends React.Component {
   }
 
   handleDelete = (rowData, nameCollection) => {
+    let data = rowData
+    data.deletedAt = true
     let itemRef = fire.database().ref(`${nameCollection}/${rowData.uid}`)
-    itemRef.remove()
+    itemRef.update(data)
       .then(() => {
         toast.success(`This ${nameCollection} deleted success`)
       })
@@ -97,7 +105,7 @@ class ListRestaurants extends React.Component {
 
     return (
       <>
-        <totalRecordsRes />
+      <ToastContainer/>
         <CRow >
           <CCol>
             <CCard>

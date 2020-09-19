@@ -26,10 +26,14 @@ class ListMarketer extends React.Component {
       totalRecordsMar: 0,
       row: 10,
       searchInput: "",
-      dataFilter: []
+      dataFilter: [],
     }
   }
   componentDidMount() {
+    this.getListMarketers()
+  }
+
+  getListMarketers = () => {
     fire.database().ref('marketers').on('value', snapshot => {
       const marketerObject = snapshot.val();
       const marketerList = Object.keys(marketerObject).map(key => ({
@@ -37,10 +41,13 @@ class ListMarketer extends React.Component {
         uid: key,
       }));
 
+      // remove item is deleted
+      let listMarketer = marketerList.filter(item => item.deletedAt !== true)
+      
       this.setState({
-        listMarketer: marketerList,
-        totalRecordsMar: marketerList.length,
-        dataFilter: marketerList
+        listMarketer: listMarketer,
+        totalRecordsMar: listMarketer.length,
+        dataFilter: listMarketer
       });
     });
   }
@@ -50,8 +57,10 @@ class ListMarketer extends React.Component {
   }
 
   handleDelete = (rowData, nameCollection) => {
+    let data = rowData
+    data.deletedAt = true
     let itemRef = fire.database().ref(`${nameCollection}/${rowData.uid}`)
-    itemRef.remove()
+    itemRef.update(data)
       .then(() => {
         toast.success(`This ${nameCollection} deleted success`)
       })
